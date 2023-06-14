@@ -1,0 +1,13 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<string> list = ViewData["list"] as List<string>;
+}
+
+
+@for (int i = 0; i < list.Count; i++)
+{
+    <button class="btn btn-primary">@list[i]</button>
+    <img src="/img/@list[i]"></img>
+}
