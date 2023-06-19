@@ -1,11 +1,14 @@
+using ContactDBandProduct.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<MySqlConnection>(
+
+/*builder.Services.AddSingleton<MySqlConnection>(
     option =>
 new MySqlConnection(
     builder.Configuration.GetConnectionString("DefaultConnection")
@@ -18,8 +21,14 @@ builder.Services.AddAuthentication(
         options.AccessDeniedPath = "/home/error";
         options.LoginPath = "/user/login";
 
-    });
+    });*/
 
+builder.Services.AddDbContext<UserContext>(//데이터베이스 공급자 builder보다 전에
+        options => options.UseMySql(
+            builder.Configuration.GetConnectionString("DefaultConnection"),
+
+            ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")
+            )));
 
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(1);

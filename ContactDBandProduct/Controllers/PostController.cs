@@ -48,7 +48,9 @@ namespace ContactDBandProduct.Controllers
 
             return result;
         }
-        public IActionResult PostPage()
+
+        [HttpGet]
+        public IActionResult Post()
         {
             return View();
         }

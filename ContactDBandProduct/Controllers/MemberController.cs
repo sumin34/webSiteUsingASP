@@ -5,7 +5,7 @@ using MySql.Data.MySqlClient;
 
 //세션 이용하는 방법으로 사용하는 컨트롤러는 아님, 공부용으로 남겨둠 
 
-
+/*
 namespace ContactDBandProduct.Controllers
 {
     public class MemberController : Controller
@@ -15,10 +15,7 @@ namespace ContactDBandProduct.Controllers
         {
             _connection = mySqlConnection;
         }
-        public IActionResult SignupPage()
-        {
-            return View();
-        }
+        
         public IActionResult Signup(MemberModel membermodel)
         {
             _connection.Open();
@@ -66,3 +63,4 @@ namespace ContactDBandProduct.Controllers
         }
     }
 }
+*/
