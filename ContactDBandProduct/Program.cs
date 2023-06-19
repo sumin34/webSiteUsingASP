@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using MySql.Data.MySqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,16 @@ new MySqlConnection(
     builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
+
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+    {
+        options.AccessDeniedPath = "/home/error";
+        options.LoginPath = "/user/login";
+
+    });
+
+
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(1);
 });
@@ -24,9 +35,12 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
-app.UseRouting();
+app.UseRouting();//순서
 
-app.UseAuthorization();
+app.UseAuthentication(); //지켜야
+
+
+app.UseAuthorization();//합니다
 
 app.MapControllerRoute(
     name: "default",

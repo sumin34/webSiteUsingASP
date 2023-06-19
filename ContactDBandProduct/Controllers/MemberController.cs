@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 
+
+//세션 이용하는 방법으로 사용하는 컨트롤러는 아님, 공부용으로 남겨둠 
+
+
 namespace ContactDBandProduct.Controllers
 {
     public class MemberController : Controller
